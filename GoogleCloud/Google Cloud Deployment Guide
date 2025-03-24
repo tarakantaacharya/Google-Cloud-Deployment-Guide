@@ -1,0 +1,120 @@
+# Google Cloud Deployment Guide
+
+This document lists Google Cloud CLI commands and their usage for deployment projects.
+
+## 1. Authentication & Configuration
+- **Login to Google Cloud:**
+  ```sh
+  gcloud auth login
+  ```
+  *Authenticates your Google Cloud account.*
+
+- **Set active project:**
+  ```sh
+  gcloud config set project PROJECT_ID
+  ```
+  *Configures the active Google Cloud project.*
+
+- **List available projects:**
+  ```sh
+  gcloud projects list
+  ```
+  *Displays all projects associated with your account.*
+
+- **Check current configuration:**
+  ```sh
+  gcloud config list
+  ```
+  *Shows the current active project, account, and settings.*
+
+## 2. IAM (Identity & Access Management) Policies
+- **View IAM policies for a project:**
+  ```sh
+  gcloud projects get-iam-policy PROJECT_ID --format=json
+  ```
+  *Lists all roles and permissions assigned to the project.*
+
+- **Add IAM policy binding:**
+  ```sh
+  gcloud projects add-iam-policy-binding PROJECT_ID --member="serviceAccount:ACCOUNT" --role="ROLE"
+  ```
+  *Grants a role to a user or service account.*
+
+## 3. Enabling Required Services
+- **Enable App Engine service:**
+  ```sh
+  gcloud services enable appengine.googleapis.com
+  ```
+  *Activates App Engine for your project.*
+
+- **Enable Cloud Build service:**
+  ```sh
+  gcloud services enable cloudbuild.googleapis.com
+  ```
+  *Allows Cloud Build for automated deployments.*
+
+- **Enable Cloud SQL service:**
+  ```sh
+  gcloud services enable sqladmin.googleapis.com
+  ```
+  *Enables Cloud SQL for database management.*
+
+## 4. Cloud SQL Management
+- **List Cloud SQL instances:**
+  ```sh
+  gcloud sql instances list
+  ```
+  *Shows all Cloud SQL instances in the project.*
+
+- **Describe a Cloud SQL instance:**
+  ```sh
+  gcloud sql instances describe INSTANCE_NAME
+  ```
+  *Displays detailed configuration of a Cloud SQL instance.*
+
+## 5. App Engine Deployment
+- **Create an App Engine application:**
+  ```sh
+  gcloud app create --region=REGION
+  ```
+  *Initializes App Engine in the specified region.*
+
+- **Deploy an application to App Engine:**
+  ```sh
+  gcloud app deploy
+  ```
+  *Deploys the application to App Engine.*
+
+- **View deployed application in browser:**
+  ```sh
+  gcloud app browse
+  ```
+  *Opens the deployed application in a web browser.*
+
+- **Stream application logs:**
+  ```sh
+  gcloud app logs tail -s default
+  ```
+  *Continuously monitors logs from App Engine.*
+
+## 6. Cloud Storage Configuration
+- **Grant public read access to a storage bucket:**
+  ```sh
+  gcloud storage buckets add-iam-policy-binding gs://BUCKET_NAME --member="allUsers" --role="roles/storage.objectViewer"
+  ```
+  *Allows public access to files in the bucket.*
+
+## 7. Additional Commands
+- **Set active user account:**
+  ```sh
+  gcloud config set account ACCOUNT_EMAIL
+  ```
+  *Changes the active Google Cloud account.*
+
+- **List authenticated accounts:**
+  ```sh
+  gcloud auth list
+  ```
+  *Displays all logged-in accounts and the active account.*
+
+This guide provides essential commands for deploying applications using Google Cloud CLI. Modify it as needed for your deployment workflow!
